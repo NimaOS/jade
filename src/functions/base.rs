@@ -36,20 +36,20 @@ pub fn install_base_packages(kernel: String) {
         "curl",
         "archlinux-keyring",
         // Base Crystal
-        "crystal-core",
-        "crystal-branding",
+        // "crystal-core",
+        // "crystal-branding",
         // Extra goodies
-        "neofetch",
+        // "neofetch",
         "btrfs-progs",
         "which",
         "base-devel",
         // Fonts
-        "noto-fonts",
-        "noto-fonts-emoji",
-        "noto-fonts-cjk",
-        "noto-fonts-extra",
-        "ttf-nerd-fonts-symbols-common",
-        "vazirmatn-fonts",
+        // "noto-fonts",
+        // "noto-fonts-emoji",
+        // "noto-fonts-cjk",
+        // "noto-fonts-extra",
+        // "ttf-nerd-fonts-symbols-common",
+        // "vazirmatn-fonts",
         // Common packages for all desktops
         "xterm",
         "pipewire",
@@ -57,8 +57,8 @@ pub fn install_base_packages(kernel: String) {
         "pipewire-alsa",
         "pipewire-jack",
         "wireplumber",
-        "crystal-first-setup",
-        "crystal-wallpapers",
+        // "crystal-first-setup",
+        // "crystal-wallpapers",
         "power-profiles-daemon",
         "cups",
         "cups-pdf",
@@ -104,11 +104,11 @@ pub fn genfstab() {
 
 pub fn install_bootloader_efi(efidir: PathBuf) {
     install::install(vec![
-        "grub",
+        // "grub",
         "efibootmgr",
-        "crystal-grub-theme",
+        // "crystal-grub-theme",
         "os-prober",
-        "crystal-branding",
+        // "crystal-branding",
     ]);
     let efidir = std::path::Path::new("/mnt").join(efidir);
     let efi_str = efidir.to_str().unwrap();
@@ -138,13 +138,13 @@ pub fn install_bootloader_efi(efidir: PathBuf) {
         ),
         "install grub as efi without --removable",
     );
-    files_eval(
-        append_file(
-            "/mnt/etc/default/grub",
-            "GRUB_THEME=\"/usr/share/grub/themes/crystal/theme.txt\"",
-        ),
-        "enable crystal grub theme",
-    );
+    // files_eval(
+    //     append_file(
+    //         "/mnt/etc/default/grub",
+    //         "GRUB_THEME=\"/usr/share/grub/themes/crystal/theme.txt\"",
+    //     ),
+    //     "enable crystal grub theme",
+    // );
     exec_eval(
         exec_chroot(
             "grub-mkconfig",
@@ -156,10 +156,10 @@ pub fn install_bootloader_efi(efidir: PathBuf) {
 
 pub fn install_bootloader_legacy(device: PathBuf) {
     install::install(vec![
-        "grub",
-        "crystal-grub-theme",
+        // "grub",
+        // "crystal-grub-theme",
         "os-prober",
-        "crystal-branding",
+        // "crystal-branding",
     ]);
     if !device.exists() {
         crash(format!("The device {device:?} does not exist"), 1);
@@ -172,13 +172,13 @@ pub fn install_bootloader_legacy(device: PathBuf) {
         ),
         "install grub as legacy",
     );
-    files_eval(
-        append_file(
-            "/mnt/etc/default/grub",
-            "GRUB_THEME=\"/usr/share/grub/themes/crystal/theme.txt\"",
-        ),
-        "enable crystal grub theme",
-    );
+    // files_eval(
+    //     append_file(
+    //         "/mnt/etc/default/grub",
+    //         "GRUB_THEME=\"/usr/share/grub/themes/crystal/theme.txt\"",
+    //     ),
+    //     "enable crystal grub theme",
+    // );
     exec_eval(
         exec_chroot(
             "grub-mkconfig",
